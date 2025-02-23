@@ -3,6 +3,7 @@ import { Link } from "@/components/link";
 import { Option } from "@/components/option";
 import { colors } from "@/styles/colors";
 import { MaterialIcons } from "@expo/vector-icons";
+import { router } from "expo-router";
 import {
   FlatList,
   Image,
@@ -18,7 +19,10 @@ export default function Index() {
     <View style={styles.container}>
       <View style={styles.header}>
         <Image source={require("@/assets/logo.png")} style={styles.logo} />
-        <TouchableOpacity activeOpacity={0.8}>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => router.navigate("/add")}
+        >
           <MaterialIcons name="add" size={32} color={colors.green[300]} />
         </TouchableOpacity>
       </View>
@@ -39,7 +43,7 @@ export default function Index() {
         showsVerticalScrollIndicator={false}
       />
 
-      <Modal transparent visible={true}>
+      <Modal transparent visible={false}>
         <View style={styles.modal}>
           <View style={styles.modalContent}>
             <View style={styles.modalHeader}>
@@ -54,7 +58,7 @@ export default function Index() {
             </View>
             <Text style={styles.modalLinkName}>Rocketseat</Text>
             <Text style={styles.modalUrl}>https://google.com</Text>
-            <View  style={styles.modalFooter}>
+            <View style={styles.modalFooter}>
               <Option name="Exclur" icon="delete" variante="secondary" />
               <Option name="Abrir" icon="language" />
             </View>
