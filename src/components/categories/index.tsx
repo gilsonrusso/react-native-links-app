@@ -3,7 +3,12 @@ import { FlatList } from "react-native";
 import { Category } from "../category";
 import { styles } from "./styles";
 
-export function Categories() {
+interface Props {
+  selected: string;
+  onChangeCategory: (item: string) => void;
+}
+
+export function Categories({ selected, onChangeCategory }: Props) {
   return (
     <FlatList
       style={styles.container}
@@ -13,7 +18,12 @@ export function Categories() {
       data={categories}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
-        <Category name={item.name} isSelected={false} icon={item.icon} />
+        <Category
+          name={item.name}
+          isSelected={item.name === selected}
+          icon={item.icon}
+          onPress={() => onChangeCategory(item.name)}
+        />
       )}
     />
   );
